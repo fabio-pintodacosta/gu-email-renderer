@@ -46,3 +46,8 @@ The Today email uses a custom template that includes two main components.
 
 1. A custom content block that scrapes the content from this application
 2. The Today email's footer, which includes an ExactTarget unsubscribe link
+
+##
+Changelog
+Version: 37: Brancn 3. This fixes the width bug, apr 8, 2012
+

@@ -49,5 +49,6 @@ The Today email uses a custom template that includes two main components.
 
 ##
 Changelog
-Version: 37: Brancn 3. This fixes the width bug, apr 8, 2012
+Version:
+37: Brancn 3. This fixes the width bug, apr 8, 2012
 

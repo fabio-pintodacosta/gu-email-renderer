@@ -1,10 +1,12 @@
 import logging
 import urllib2
-from urlparse import urljoin
+# from urlparse import urljoin
 from django.utils import simplejson as json
 from urlparse import urlparse
+from datetime import datetime, timedelta
 
 # TODO: pull this up into a generic http client
+
 
 class OphanClient(object):
     def __init__(self, base_url, api_key):
@@ -51,7 +53,9 @@ class MostSharedFetcher(object):
     def _extract_path(self, url):
         return urlparse(url).path
 
+    def _last_twenty_four_hours(self, time):
+        return datetime.now() - datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ") < timedelta(days=1)
 
     def _parse_response(self, response):
         shared_items = json.loads(response)
-        return [(self._extract_path(item['path']), item['hits']) for item in shared_items]
+        return [(self._extract_path(item['path']), item['hits']) for item in shared_items if self._last_twenty_four_hours(item["contentInfo"]["webPublicationDate"])]
